@@ -17,31 +17,48 @@ export default class Login extends Component {
     super(props);
     this.state = {
       nim: '',
-      password: ''
+      password: '',
+      nama: '',
+      prodi: '',
+      loading: false
     }
   }
 
-  login() {
-
-    axios.post('http://103.247.11.242/plesk-site-preview/asaadam.tk/103.247.11.242/api/loginem.php', {
-      data: {
-        nim: 175150201111032,
-        pass: 'game9898'
-      }
+  login = () =>{
+    this.setState({loading:true})
+    const body = {
+      "nim": this.state.nim,
+      "pass":this.state.password
+    }
+    fetch('https://backend-bem.herokuapp.com/auth', {
+        method: 'POST',
+        headers:{
+          'content-type':'application/json'
+        },
+        body:JSON.stringify(body),
     })
-      .then(function (response) {
-        console.log(response);
-      })
-      .catch(function (error) {
-        console.log(error);
+    .then(response=>{
+      if(response.ok){
+        return response.json();
+        
+      }
+      this.setState({loading:false})
+      return response.json().then(error=>{
+        throw new Error(error.message);
       });
+    }).then(ress=>{
+      console.log(ress);
+      this.setState({nama:ress.nama});
+      this.setState({prodi:ress.prodi});
+      this.setState({loading:false})
+    })
   }
 
   render() {
 
     return (
       <AuthConsumer>
-        {({ pilih }) => (
+        {({ setInfo }) => (
           <div class="ui middle aligned center aligned grid container">
             <Grid centered columns={2}>
               <Grid.Column>
@@ -66,10 +83,19 @@ export default class Login extends Component {
                       onChange={input => this.setState({ password: input.target.value })}
 
                     />
-
-                    <Button color="blue" fluid size="large" onClick={this.login.bind(this)}>
-                      Login
-                     </Button>
+                    {this.state.loading && <Button fluid size="large" loading primary>
+                      Loading
+                    </Button>}
+                    {this.state.loading === false && <Button color="blue" fluid size="large" onClick={()=>{
+                      this.login.bind(this);
+                      console.log(this.state)
+                      setInfo(this.state.nama,this.state.nim,this.state.prodi);
+                      this.props.history.replace('/form')
+                    }
+                  }>
+                    Login
+                   </Button>}
+                    
 
 
                   </Form>
