@@ -17,26 +17,43 @@ export default class Login extends Component {
     super(props);
     this.state = {
       nim: '',
-      password: ''
+      password: '',
+      nama: '',
+      prodi: '',
+      loading: false
     }
   }
 
-  login() {
-
-    axios('https://backend-bem.herokuapp.com/auth', {
-    method:'POST',
-    headers:{
-      'content-type':'application/json'
-    },
-    body: {
-        "nim":"175150201111032",
-        "pass":"game9898"
-      }
+   login = async () =>{
+    this.setState({loading:true})
+    const body = {
+      "nim": this.state.nim,
+      "pass":this.state.password
+    }
+   await fetch('https://backend-bem.herokuapp.com/auth', {
+        method: 'POST',
+        headers:{
+          'content-type':'application/json'
+        },
+        body:JSON.stringify(body),
     })
     .then(response=>{
-      console.log(response);
-    }).catch(err=>{
-      console.log(err);
+      if(response.ok){
+        console.log('sukses');
+        return response.json();
+        
+      }
+      this.setState({loading:false})
+      return response.json().then(error=>{
+        throw new Error(error.message);
+      });
+    }).then(ress=>{
+      console.log(ress);
+      this.setState({nama:ress.nama});
+      this.setState({prodi:ress.prodi});
+      this.setState({loading:false});
+      this.props.history.replace('/form')
+
     })
   }
 
@@ -44,12 +61,11 @@ export default class Login extends Component {
 
     return (
       <AuthConsumer>
-        {({ pilih }) => (
+        {({ setInfo }) => (
           <div class="ui middle aligned center aligned grid container">
             <Grid centered columns={2}>
               <Grid.Column>
                 <Header as="h2" textAlign="center">
-                  {pilih}
                   Login
                 </Header>
                 <Segment>
@@ -70,10 +86,18 @@ export default class Login extends Component {
                       onChange={input => this.setState({ password: input.target.value })}
 
                     />
-
-                    <Button color="blue" fluid size="large" onClick={this.login.bind(this)}>
-                      Login
-                     </Button>
+                    {this.state.loading && <Button fluid size="large" loading primary>
+                      Loading
+                    </Button>}
+                    {this.state.loading === false && <Button color="blue" fluid size="large" onClick={()=>{
+                      this.login();
+                      console.log(this.state)
+                      setInfo(this.state.nama,this.state.nim,this.state.prodi);
+                    }
+                  }>
+                    Login
+                   </Button>}
+                    
 
 
                   </Form>
