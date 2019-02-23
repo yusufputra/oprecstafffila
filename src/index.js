@@ -4,10 +4,13 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import { HashRouter } from 'react-router-dom';
+import { AuthProvider } from './AuthContext';
 
 ReactDOM.render(
     <HashRouter>
+        <AuthProvider>
         <App />
+        </AuthProvider>
     </HashRouter>
     , document.getElementById('root'));
 

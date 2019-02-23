@@ -7,7 +7,7 @@ const options = [
     { key: 'f', text: 'Filafest', value: 'filafest' },
 ]
 const URL = 'http://localhost/api/postdata.php';
-const URL = 'https://bemfilkom.ub.ac.id/api/opten3ProkerBesar/postdata.php'
+// const URL = 'https://bemfilkom.ub.ac.id/api/opten3ProkerBesar/postdata.php'
 
 export default class FormPendaftaran extends Component {
     constructor(props) {
@@ -23,6 +23,7 @@ export default class FormPendaftaran extends Component {
     }
 
     handleChange = (e, { value }) => this.setState({ value })
+
 
 
     daftar() {
@@ -43,6 +44,9 @@ export default class FormPendaftaran extends Component {
           }).catch(err=>{
               console.log(err);
           });
+        }
+        componentDidMount(){
+            
         }
 
     render() {
