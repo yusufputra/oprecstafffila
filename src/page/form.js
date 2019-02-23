@@ -1,50 +1,67 @@
 import React, { Component } from 'react'
 import { Form } from 'semantic-ui-react'
-
+import axios from 'axios';
 
 const options = [
-    { key: 'm', text: 'Male', value: 'male' },
-    { key: 'f', text: 'Female', value: 'female' },
-  ]
+    { key: 'p', text: 'PK2 Maba', value: 'pk2' },
+    { key: 'f', text: 'Filafest', value: 'filafest' },
+]
+const URL = 'http://localhost/api/postdata.php';
+const URL = 'https://bemfilkom.ub.ac.id/api/opten3ProkerBesar/postdata.php'
+
 export default class FormPendaftaran extends Component {
-    state={}
+    constructor(props) {
+        super(props);
+        this.state = {
+            nim: '',
+            nama: '',
+            prodi: '',
+            line: '',
+            pilihan: '',
+            motivasi: ''
+        }
+    }
+
     handleChange = (e, { value }) => this.setState({ value })
 
-  render() {
-    const { value } = this.state
 
-    return (
-        <Form>
-        <Form.Group widths='equal'>
-          <Form.Input fluid label='First name' placeholder='First name' />
-          <Form.Input fluid label='Last name' placeholder='Last name' />
-          <Form.Select fluid label='Gender' options={options} placeholder='Gender' />
-        </Form.Group>
-        <Form.Group inline>
-          <label>Size</label>
-          <Form.Radio
-            label='Small'
-            value='sm'
-            checked={value === 'sm'}
-            onChange={this.handleChange}
-          />
-          <Form.Radio
-            label='Medium'
-            value='md'
-            checked={value === 'md'}
-            onChange={this.handleChange}
-          />
-          <Form.Radio
-            label='Large'
-            value='lg'
-            checked={value === 'lg'}
-            onChange={this.handleChange}
-          />
-        </Form.Group>
-        <Form.TextArea label='About' placeholder='Tell us more about you...' />
-        <Form.Checkbox label='I agree to the Terms and Conditions' />
-        <Form.Button>Submit</Form.Button>
-      </Form>
-    )
-  }
+    daftar() {
+        axios({
+            method: 'post',
+            url: URL,
+            data: {
+                "nim" : this.state.nim,
+                "nama": this.state.nama,
+                "prodi": this.state.prodi,
+                "idline": this.state.line,
+                "pilihan": this.state.pilihan,
+                "motivasi": this.state.motivasi
+            },
+           
+          }).then(ress=>{
+              console.log('suskes');
+          }).catch(err=>{
+              console.log(err);
+          });
+        }
+
+    render() {
+
+        return (
+            <Form>
+                <Form.Input fluid label='Nim' placeholder='First name' onChange={val => this.setState({ nim: val.target.value })} />
+                <Form.Input fluid label='Nama' placeholder='First name' onChange={val => this.setState({ nama: val.target.value })} />
+                <Form.Input fluid label='Program Studi' placeholder='Gender' onChange={val => this.setState({ program: val.target.value })} />
+                <Form.Input fluid label='Id Line' placeholder='Id Line' onChange={val => this.setState({ line: val.target.value })} />
+                <Form.Select fluid label='Pilihan Ketua Pelaksana' placeholder='Pilih..' options={options} 
+                onChange={val=>
+                    {
+                    this.setState({pilihan:val.target.textContent})
+                    }
+                    }/>
+                <Form.TextArea label='Motivasi' placeholder='Tell us more about you...' onChange={val => this.setState({ motivasi: val.target.value })} />
+                <Form.Button onClick={this.daftar.bind(this)}>Submit</Form.Button>
+            </Form>
+        )
+    }
 }
