@@ -23,18 +23,21 @@ export default class Login extends Component {
 
   login() {
 
-    axios.post('http://103.247.11.242/plesk-site-preview/asaadam.tk/103.247.11.242/api/loginem.php', {
-      data: {
-        nim: 175150201111032,
-        pass: 'game9898'
+    axios('https://backend-bem.herokuapp.com/auth', {
+    method:'POST',
+    headers:{
+      'content-type':'application/json'
+    },
+    body: {
+        "nim":"175150201111032",
+        "pass":"game9898"
       }
     })
-      .then(function (response) {
-        console.log(response);
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
+    .then(response=>{
+      console.log(response);
+    }).catch(err=>{
+      console.log(err);
+    })
   }
 
   render() {
@@ -46,6 +49,7 @@ export default class Login extends Component {
             <Grid centered columns={2}>
               <Grid.Column>
                 <Header as="h2" textAlign="center">
+                  {pilih}
                   Login
                 </Header>
                 <Segment>

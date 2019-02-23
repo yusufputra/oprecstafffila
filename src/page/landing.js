@@ -5,9 +5,7 @@ import { Link } from 'react-router-dom';
 import { AuthConsumer } from '../AuthContext';
 export default class Landing extends Component {
 
-  setPilih(){
-
-  }
+ 
 
   render() {
     return (
