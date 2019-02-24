@@ -24,13 +24,13 @@ export default class Login extends Component {
     }
   }
 
-  login = () =>{
+   login = async () =>{
     this.setState({loading:true})
     const body = {
       "nim": this.state.nim,
       "pass":this.state.password
     }
-    fetch('https://backend-bem.herokuapp.com/auth', {
+   await fetch('https://backend-bem.herokuapp.com/auth', {
         method: 'POST',
         headers:{
           'content-type':'application/json'
@@ -39,6 +39,7 @@ export default class Login extends Component {
     })
     .then(response=>{
       if(response.ok){
+        console.log('sukses');
         return response.json();
         
       }
@@ -50,7 +51,9 @@ export default class Login extends Component {
       console.log(ress);
       this.setState({nama:ress.nama});
       this.setState({prodi:ress.prodi});
-      this.setState({loading:false})
+      this.setState({loading:false});
+      this.props.history.replace('/form')
+
     })
   }
 
@@ -87,10 +90,9 @@ export default class Login extends Component {
                       Loading
                     </Button>}
                     {this.state.loading === false && <Button color="blue" fluid size="large" onClick={()=>{
-                      this.login.bind(this);
+                      this.login();
                       console.log(this.state)
                       setInfo(this.state.nama,this.state.nim,this.state.prodi);
-                      this.props.history.replace('/form')
                     }
                   }>
                     Login

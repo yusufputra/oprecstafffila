@@ -56,7 +56,9 @@ export default class FormPendaftaran extends Component {
         return (
             <AuthConsumer>
             {({nama,nim,prodi})=>(
-                <Form>{nama}
+                
+                <Form>
+                    <h1>{nama}</h1>
                 <Form.Input fluid label='Nim' placeholder='First name' value={nim} onChange={val => this.setState({ nim: val.target.value })} />
                 <Form.Input fluid label='Nama' placeholder='First name' value={nama} onChange={val => this.setState({ nama: val.target.value })} />
                 <Form.Input fluid label='Program Studi' placeholder='Gender' value={prodi} onChange={val => this.setState({ program: val.target.value })} />
