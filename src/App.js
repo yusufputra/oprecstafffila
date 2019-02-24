@@ -33,8 +33,13 @@ class App extends Component {
           <Switch>
             <Route exact path="/" component={Landing}  />
             <Route path="/login" component={Login} />
+<<<<<<< HEAD
              <PrivateRoute path="/form" component={FormPendaftaran} status={isLogged}/>
              <PrivateRoute path="/success" component={Sukses} status={isLogged}/>
+=======
+            {isLogged && <Route path="/form" component={FormPendaftaran}/>}
+            {<Route path="/success" component={Sukses}/>}
+>>>>>>> 892b9bb11f2509b911536492ae9f9bcea8c6160b
           </Switch>
           </Container>
         </div>
