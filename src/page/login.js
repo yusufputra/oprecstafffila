@@ -24,44 +24,12 @@ export default class Login extends Component {
     }
   }
 
-   login = async () =>{
-    this.setState({loading:true})
-    const body = {
-      "nim": this.state.nim,
-      "pass":this.state.password
-    }
-   await fetch('https://backend-bem.herokuapp.com/auth', {
-        method: 'POST',
-        headers:{
-          'content-type':'application/json'
-        },
-        body:JSON.stringify(body),
-    })
-    .then(response=>{
-      if(response.ok){
-        console.log('sukses');
-        return response.json();
-        
-      }
-      this.setState({loading:false})
-      return response.json().then(error=>{
-        throw new Error(error.message);
-      });
-    }).then(ress=>{
-      console.log(ress);
-      this.setState({nama:ress.nama});
-      this.setState({prodi:ress.prodi});
-      this.setState({loading:false});
-      this.props.history.replace('/form')
-
-    })
-  }
-
+   
   render() {
 
     return (
       <AuthConsumer>
-        {({ setInfo }) => (
+        {({ login }) => (
           <div class="ui middle aligned center aligned grid">
             <Grid centered columns={1}>
               <Grid.Column>
@@ -89,10 +57,10 @@ export default class Login extends Component {
                     {this.state.loading && <Button fluid size="large" loading primary>
                       Loading
                     </Button>}
-                    {this.state.loading === false && <Button color="blue" fluid size="large" onClick={()=>{
-                      this.login();
-                      console.log(this.state)
-                      setInfo(this.state.nama,this.state.nim,this.state.prodi);
+                    {this.state.loading === false && <Button color="blue" fluid size="large" 
+                    onClick={async ()=>{
+                      await login(this.state.nim,this.state.password);
+                      this.props.history.replace('/form');
                     }
                   }>
                     Login
