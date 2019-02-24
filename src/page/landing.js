@@ -59,11 +59,11 @@ export default class Landing extends Component {
             <div className="ui middle aligned center aligned grid container">
               <Card.Group>
                 <Card>
-                  <Image src='https://react.semantic-ui.com/images/avatar/large/daniel.jpg' />
+                  <Image src='/img/pk2.jpg' />
                   <Card.Content>
                     <Card.Header>PK2MABA FILKOM</Card.Header>
                     <Card.Meta>2019</Card.Meta>
-                    <Card.Description>ini deskripsi  singkat</Card.Description>
+                    <Card.Description>Merupakan rangkaian kegiatan yang bertujuan untuk menyambut dan memperkenalkan kehidupan kampus dengan menanamkan budaya dan nilai-nilai dasar sebagai mahasiswa Filkom aktif kepada mahasiswa baru yang berkolaborasi dengan pihak dekanat Filkom.</Card.Description>
                   </Card.Content>
                   <Card.Content extra>
 
@@ -79,11 +79,11 @@ export default class Landing extends Component {
 
                 </Card>
                 <Card>
-                  <Image src='https://react.semantic-ui.com/images/avatar/large/daniel.jpg' />
+                  <Image src='/img/filafest.jpg' />
                   <Card.Content>
                     <Card.Header>Diesnatalis FILKOM</Card.Header>
                     <Card.Meta>2019</Card.Meta>
-                    <Card.Description>ini deskripsi  singkat</Card.Description>
+                    <Card.Description>Diesnatalis Fakultas Ilmu Komputer yang bertujuan sebagai perayaan ulang tahun Fakultas Ilmu Komputer ke 8 Tahun yang dimana pelaksanaannya akan melibatkan panitia mahasiswa yang dibawahi oleh Kementerian Pengembangan Sumber Daya Mahasiswa</Card.Description>
                   </Card.Content>
                   <Card.Content extra>
 

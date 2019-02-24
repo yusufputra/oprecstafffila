@@ -59,8 +59,8 @@ export default class Login extends Component {
     return (
       <AuthConsumer>
         {({ setInfo }) => (
-          <div class="ui middle aligned center aligned grid container">
-            <Grid centered columns={2}>
+          <div class="ui middle aligned center aligned grid">
+            <Grid centered columns={1}>
               <Grid.Column>
                 <Header as="h2" textAlign="center">
                   Login

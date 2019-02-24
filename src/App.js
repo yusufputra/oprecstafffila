@@ -6,6 +6,7 @@ import { Container } from 'semantic-ui-react'
 
 import Landing from './page/landing';
 import { Route, Switch,Redirect } from 'react-router';
+import Navbar from './component/navbar';
 const test = false;
 const PrivateRoute = ({ component: Component, ...rest }) => (
   <Route {...rest} render={(props) => (
@@ -22,6 +23,8 @@ const PrivateRoute = ({ component: Component, ...rest }) => (
 class App extends Component {
   render() {
     return (
+      <div>
+      <Navbar></Navbar>
       <Container>
       <Switch>
         <Route exact path="/" component={Landing} />
@@ -29,6 +32,7 @@ class App extends Component {
         <Route path="/form" component={FormPendaftaran}/>
       </Switch>
       </Container>
+      </div>
     );
   }
 }
