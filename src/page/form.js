@@ -19,7 +19,7 @@ export default class FormPendaftaran extends Component {
             nama: '',
             prodi: '',
             line: '',
-            pilihan: '',
+            pilih: '',
             motivasi: ''
         }
     }
@@ -72,11 +72,19 @@ export default class FormPendaftaran extends Component {
                 
                 <Form>
                     
+<<<<<<< HEAD
                 <Form.Input fluid label='NIM' placeholder='First name' value={nim} onChange={val => this.setState({ nim: val.target.value })} />
                 <Form.Input fluid label='Nama' placeholder='First name' value={nama} onChange={val => this.setState({ nama: val.target.value })} />
                 <Form.Input fluid label='Program Studi' placeholder='Gender' value={prodi} onChange={val => this.setState({ program: val.target.value })} />
                 <Form.Input fluid label='Id Line' placeholder='Id Line' onChange={val => this.setState({ line: val.target.value })} />
                 <Form.Input fluid label='Pilihan' placeholder='Pilihan' value={pilih} onChange={val => this.setState({ pilihan: val.target.value })} />
+=======
+                <Form.Input fluid label='Nim' placeholder='First name' value={nim} readOnly onChange={val => this.setState({ nim: val.target.value })} />
+                <Form.Input fluid label='Nama' placeholder='First name' value={nama} readOnly onChange={val => this.setState({ nama: val.target.value })} />
+                <Form.Input fluid label='Program Studi' placeholder='Gender' value={prodi} readOnly onChange={val => this.setState({ program: val.target.value })} />
+                <Form.Input fluid label='Id Line' placeholder='Id Line'  onChange={val => this.setState({ line: val.target.value })} />
+                <Form.Input fluid label='Pilihan' placeholder='Pilihan' value={pilih} readOnly onChange={val => this.setState({ pilih: val.target.value })} />
+>>>>>>> 942ffc7e2033196900aa04212a8f742827847959
                 <Form.TextArea label='Motivasi' placeholder='Tell us more about you...' onChange={val => this.setState({ motivasi: val.target.value })} />
                 <Button onClick={this.daftar.bind(nama, nim, prodi, pilih)}>Submit</Button>
             </Form>
