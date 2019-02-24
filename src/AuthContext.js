@@ -1,5 +1,5 @@
 import React from 'react';
-
+import {Redirect} from 'react-router-dom'; 
 const AuthContext = React.createContext();
 
 
@@ -50,10 +50,15 @@ class AuthProvider extends React.Component {
                 });
             }).then(ress => {
                 console.log(ress);
+                if (!ress.sukses){
+                    return false
+                }
+               
                 this.setState({ nim: ress.nim });
                 this.setState({ nama: ress.nama });
                 this.setState({ prodi: ress.prodi });
                 this.setState({ isLogged: true });
+                return true               
 
             })
     }

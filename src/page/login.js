@@ -6,8 +6,8 @@ import {
   Header,
   Segment,
 } from 'semantic-ui-react';
-import axios from 'axios';
 import { AuthConsumer } from '../AuthContext';
+import { isContext } from 'vm';
 
 const URL_EM = 'https://em.ub.ac.id/auth/css/api.php'
 
@@ -59,8 +59,20 @@ export default class Login extends Component {
                     </Button>}
                     {this.state.loading === false && <Button color="blue" fluid size="large" 
                     onClick={async ()=>{
-                      await login(this.state.nim,this.state.password);
-                      this.props.history.replace('/form');
+                      await login(this.state.nim,this.state.password).then(ress=>{
+                        let a =ress;
+                        console.log(ress);
+                        if (a==true){
+                          
+                          this.props.history.replace('/login');
+                        }
+                        else{
+                          this.props.history.replace('/form');
+
+                        }
+                      });
+                      
+
                     }
                   }>
                     Login
