@@ -9,28 +9,52 @@ import Landing from './page/landing';
 import { Route, Switch,Redirect } from 'react-router';
 import Navbar from './component/navbar';
 import Sukses from './component/sukses';
-const PrivateRoute = ({ component: Component,status:isLogged,pilih:pilih, ...rest }) => (
-  <Route {...rest} render={(props) => {
-    if (pilih==null){
-      return <Redirect to={{
-            pathname: '/',
-            state: { from: props.location }
-          }} />
-    }
-    else if (isLogged){
-      return <Redirect to={{
-        pathname: '/login',
-        state: { from: props.location }
-      }} />
-    }
-    else{
-      return <Component {...props}/>
-    }
-  }} />
+// const PrivateRoute = ({ component: Component,status:isLogged,pilih:pilih, ...rest }) => (
+//   <Route {...rest} render={(props) => {
+//     if (pilih===undefined){
+     
+//       return  <Redirect to={{
+//         pathname: '/',
+//         state: { from: props.location }
+//       }} />
+//     }
+//    else if (pilih!=undefined&&isLogged==false){
+   
+//       return <Redirect to={{
+//         pathname: '/login',
+//         state: { from: props.location }
+//       }} />
+//     }
+//     else {
+     
+//       return <Component {...props}/>
+//     }
+     
+    
+//   }} />
+// )
+
+const PrivateRoute = ({ component: Component,status:isLogged, ...rest }) => (
+  <Route {...rest} render={(props) => (
+    isLogged === true
+      ? <Component {...props} />
+      : <Redirect to={{
+          pathname: '/login',
+          state: { from: props.location }
+        }} />
+  )} />
 )
 
-
-
+const PrivateRouteTwo = ({ component: Component,status:isLogged, ...rest }) => (
+  <Route {...rest} render={(props) => (
+    isLogged != null
+      ? <Component {...props} />
+      : <Redirect to={{
+          pathname: '/',
+          state: { from: props.location }
+        }} />
+  )} />
+)
 
 class App extends Component {
   render() {
@@ -42,13 +66,9 @@ class App extends Component {
           <Container>
           <Switch>
             <Route exact path="/" component={Landing}  />
-<<<<<<< HEAD
-            <Route path="/login" component={Login} />
-=======
-            <PrivateRoute path="/login" component={Login} pilih={pilih}/>
->>>>>>> 942ffc7e2033196900aa04212a8f742827847959
-             <PrivateRoute path="/form" component={FormPendaftaran} status={isLogged}/>
-             <PrivateRoute path="/success" component={Sukses} status={isLogged}/>
+            <PrivateRoute exact path="/form" component={FormPendaftaran} status={isLogged} />
+            <PrivateRouteTwo path="/login" component={Login}  status={pilih}/>
+             <PrivateRoute path="/success" component={Sukses}  status={isLogged}/>
           </Switch>
           </Container>
         </div>

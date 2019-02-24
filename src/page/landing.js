@@ -59,7 +59,7 @@ export default class Landing extends Component {
             <div className="ui middle aligned center aligned grid container">
               <Card.Group>
                 <Card>
-                  <Image src='/img/pk2.jpg' />
+                  <Image src='./img/pk2.jpg' />
                   <Card.Content>
                     <Card.Header>PK2MABA FILKOM</Card.Header>
                     <Card.Meta>2019</Card.Meta>
@@ -79,7 +79,7 @@ export default class Landing extends Component {
 
                 </Card>
                 <Card>
-                  <Image src='/img/filafest.jpg' />
+                  <Image src='./img/filafest.jpg' />
                   <Card.Content>
                     <Card.Header>Diesnatalis FILKOM</Card.Header>
                     <Card.Meta>2019</Card.Meta>

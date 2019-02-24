@@ -12,13 +12,13 @@ export default class Navbar extends Component {
 
     return (
       <AuthConsumer>
-      {({ isLogged }) => (
+      {({ isLogged, logout }) => (
         <Menu size='tiny'>
         <Menu.Item name='Pendaftaran' active={activeItem === 'Pendaftaran'} onClick={this.handleItemClick} />
 
         <Menu.Menu position='right'>
           <Menu.Item>
-            {isLogged && <Button primary>Logout</Button>}
+            {isLogged && <Button primary onClick={()=>{logout()}}>Logout</Button>}
           </Menu.Item>
         </Menu.Menu>
       </Menu>

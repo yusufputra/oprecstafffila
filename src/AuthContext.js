@@ -7,7 +7,7 @@ class AuthProvider extends React.Component {
     state = {
         isLogged: false,
         dataUser: undefined,
-        pilih: undefined,
+        pilih: null,
         nama: undefined,
         nim: undefined,
         prodi: undefined,
@@ -17,6 +17,7 @@ class AuthProvider extends React.Component {
         super()
         this.setPilih = this.setPilih.bind(this);
         this.login = this.login.bind(this);
+        this.logout = this.logout.bind(this);
     }
     //   setInfo(){
     //       this.setState({nama:nama});
@@ -24,6 +25,14 @@ class AuthProvider extends React.Component {
     //       this.setState({prodi:prodi});
     //       console.log(this.state)
     //   }
+    logout(){
+        this.setState({isLogged: false});
+        this.setState({dataUser: undefined});
+        this.setState({pilih: null});
+        this.setState({nim: undefined});
+        this.setState({prodi: undefined});
+        this.setState({link: undefined});
+    }
     setPilih(ad) {
         this.setState({ pilih: ad })
         if (ad === "PK2 Maba") {
@@ -52,32 +61,10 @@ class AuthProvider extends React.Component {
             if (!data.sukses) {
                 return false
             }
-
-<<<<<<< HEAD
-                }
-                return response.json().then(error => {
-                    throw new Error(error.message);
-                });
-            }).then(ress => {
-                console.log(ress);
-                if (!ress.sukses){
-                    return false
-                }
-               
-                this.setState({ nim: ress.nim });
-                this.setState({ nama: ress.nama });
-                this.setState({ prodi: ress.prodi });
-                this.setState({ isLogged: true });
-                // console.log(this.state)
-                return true               
-
-            })
-            console.log(this.state)
-=======
+            this.setState({ isLogged: true });
             this.setState({ nim: data.nim });
             this.setState({ nama: data.nama });
             this.setState({ prodi: data.prodi });
-            this.setState({ isLogged: true });
             return true
 
         } catch (error) {
@@ -112,7 +99,6 @@ class AuthProvider extends React.Component {
         //         return true
 
         //     })
->>>>>>> 942ffc7e2033196900aa04212a8f742827847959
     }
 
     render() {
@@ -127,7 +113,8 @@ class AuthProvider extends React.Component {
                     nim: this.state.nim,
                     prodi: this.state.prodi,
                     login: this.login,
-                    link: this.state.link
+                    link: this.state.link,
+                    logout:this.logout
                 }}
             >
                 {this.props.children}
