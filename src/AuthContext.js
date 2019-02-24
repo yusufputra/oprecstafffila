@@ -31,6 +31,7 @@ class AuthProvider extends React.Component {
         }else{
             this.setState({link: "https://drive.google.com/file/d/1UCjOZbMGsEwj4xEm1M54Dqhk4aUNifDl/view?usp=sharing"})
         }
+        console.log(this.state)
     }
     login = async (nim, pass) => {
 
@@ -64,9 +65,11 @@ class AuthProvider extends React.Component {
                 this.setState({ nama: ress.nama });
                 this.setState({ prodi: ress.prodi });
                 this.setState({ isLogged: true });
+                // console.log(this.state)
                 return true               
 
             })
+            console.log(this.state)
     }
 
     render() {

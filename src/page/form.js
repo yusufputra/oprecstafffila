@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Form } from 'semantic-ui-react'
+import { Form, Button } from 'semantic-ui-react'
 import axios from 'axios';
 import { AuthConsumer } from '../AuthContext';
 
@@ -8,8 +8,8 @@ const options = [
     { key: 'f', text: 'Filafest', value: 'filafest' },
 ]
 
-const URL = 'http://localhost/api/postdata.php';
-// const URL = 'https://bemfilkom.ub.ac.id/api/opten3ProkerBesar/postdata.php'
+// const URL = 'http://localhost/api/postdata.php';
+const URL = 'https://bemfilkom.ub.ac.id/api/opten3ProkerBesar/postdata.php'
 
 export default class FormPendaftaran extends Component {
     constructor(props) {
@@ -28,24 +28,37 @@ export default class FormPendaftaran extends Component {
 
 
 
-    daftar() {
-        axios({
-            method: 'post',
-            url: URL,
-            data: {
-                "nim" : this.state.nim,
-                "nama": this.state.nama,
-                "prodi": this.state.prodi,
-                "idline": this.state.line,
-                "pilihan": this.state.pilihan,
-                "motivasi": this.state.motivasi
+    daftar = async (nama, nim, prodi, pilih) => {
+        const body = {
+            "nim": nim,
+            "nama": nama,
+            "prodi": prodi,
+            "pilihan": pilih,
+            "idline": this.state.idline,
+            "motivasi": this.state.motivasi
+        }
+        const badan = JSON.stringify(body);
+        console.log(badan);
+        await fetch(URL, {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
             },
-           
-          }).then(ress=>{
-              console.log('suskes');
-          }).catch(err=>{
-              console.log(err);
-          });
+            body: badan,
+        })
+            .then(response => {
+                if (response.ok) {
+                    console.log('sukses');
+                    return response.json();
+
+                }
+                return response.json().then(error => {
+                    throw new Error(error.message);
+                });
+            }).then(ress => {
+                this.props.history.replace('/success')              
+
+            })
         }
         componentDidMount(){
             
@@ -55,22 +68,17 @@ export default class FormPendaftaran extends Component {
 
         return (
             <AuthConsumer>
-            {({nama,nim,prodi})=>(
+            {({nama,nim,prodi,pilih})=>(
                 
                 <Form>
                     
-                <Form.Input fluid label='Nim' placeholder='First name' value={nim} onChange={val => this.setState({ nim: val.target.value })} />
+                <Form.Input fluid label='NIM' placeholder='First name' value={nim} onChange={val => this.setState({ nim: val.target.value })} />
                 <Form.Input fluid label='Nama' placeholder='First name' value={nama} onChange={val => this.setState({ nama: val.target.value })} />
                 <Form.Input fluid label='Program Studi' placeholder='Gender' value={prodi} onChange={val => this.setState({ program: val.target.value })} />
                 <Form.Input fluid label='Id Line' placeholder='Id Line' onChange={val => this.setState({ line: val.target.value })} />
-                <Form.Select fluid label='Pilihan Ketua Pelaksana' placeholder='Pilih..' options={options} 
-                onChange={val=>
-                    {
-                    this.setState({pilihan:val.target.textContent})
-                    }
-                    }/>
+                <Form.Input fluid label='Pilihan' placeholder='Pilihan' value={pilih} onChange={val => this.setState({ pilihan: val.target.value })} />
                 <Form.TextArea label='Motivasi' placeholder='Tell us more about you...' onChange={val => this.setState({ motivasi: val.target.value })} />
-                <Form.Button onClick={this.daftar.bind(this)}>Submit</Form.Button>
+                <Button onClick={this.daftar.bind(nama, nim, prodi, pilih)}>Submit</Button>
             </Form>
             )}
             

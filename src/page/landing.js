@@ -87,8 +87,8 @@ export default class Landing extends Component {
                   </Card.Content>
                   <Card.Content extra>
 
-                    <Button animated='fade' color="blue" onClick={()=>
-                      {setPilih("Filafest")
+                    <Button animated='fade' color="blue" onClick={async ()=>{
+                      await setPilih("Filafest")
                       this.props.history.replace('/login')
                       }}>
                       <Button.Content visible>Daftar Ketua Pelaksana</Button.Content>
