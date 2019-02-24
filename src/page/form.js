@@ -19,7 +19,7 @@ export default class FormPendaftaran extends Component {
             nama: '',
             prodi: '',
             line: '',
-            pilihan: '',
+            pilih: '',
             motivasi: ''
         }
     }
@@ -55,20 +55,15 @@ export default class FormPendaftaran extends Component {
 
         return (
             <AuthConsumer>
-            {({nama,nim,prodi})=>(
+            {({nama,nim,prodi,pilih})=>(
                 
                 <Form>
                     
-                <Form.Input fluid label='Nim' placeholder='First name' value={nim} onChange={val => this.setState({ nim: val.target.value })} />
-                <Form.Input fluid label='Nama' placeholder='First name' value={nama} onChange={val => this.setState({ nama: val.target.value })} />
-                <Form.Input fluid label='Program Studi' placeholder='Gender' value={prodi} onChange={val => this.setState({ program: val.target.value })} />
-                <Form.Input fluid label='Id Line' placeholder='Id Line' onChange={val => this.setState({ line: val.target.value })} />
-                <Form.Select fluid label='Pilihan Ketua Pelaksana' placeholder='Pilih..' options={options} 
-                onChange={val=>
-                    {
-                    this.setState({pilihan:val.target.textContent})
-                    }
-                    }/>
+                <Form.Input fluid label='Nim' placeholder='First name' value={nim} readOnly onChange={val => this.setState({ nim: val.target.value })} />
+                <Form.Input fluid label='Nama' placeholder='First name' value={nama} readOnly onChange={val => this.setState({ nama: val.target.value })} />
+                <Form.Input fluid label='Program Studi' placeholder='Gender' value={prodi} readOnly onChange={val => this.setState({ program: val.target.value })} />
+                <Form.Input fluid label='Id Line' placeholder='Id Line'  onChange={val => this.setState({ line: val.target.value })} />
+                <Form.Input fluid label='Pilihan' placeholder='Pilihan' value={pilih} readOnly onChange={val => this.setState({ pilih: val.target.value })} />
                 <Form.TextArea label='Motivasi' placeholder='Tell us more about you...' onChange={val => this.setState({ motivasi: val.target.value })} />
                 <Form.Button onClick={this.daftar.bind(this)}>Submit</Form.Button>
             </Form>

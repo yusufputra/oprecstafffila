@@ -20,11 +20,12 @@ export default class Login extends Component {
       password: '',
       nama: '',
       prodi: '',
-      loading: false
+      loading: false,
+      message: false,
     }
   }
 
-   
+
   render() {
 
     return (
@@ -57,33 +58,55 @@ export default class Login extends Component {
                     {this.state.loading && <Button fluid size="large" loading primary>
                       Loading
                     </Button>}
-                    {this.state.loading === false && <Button color="blue" fluid size="large" 
-                    onClick={async ()=>{
-                      await login(this.state.nim,this.state.password).then(ress=>{
-                        let a =ress;
-                        console.log(ress);
-                        if (a==true){
-                          
-                          this.props.history.replace('/login');
-                        }
-                        else{
-                          this.props.history.replace('/form');
+                    {this.state.loading === false && <Button color="blue" fluid size="large"
+                      onClick={async () => {
+                        this.setState({ loading: true });
+                        await login(this.state.nim, this.state.password).then(ress => {
+                          let a = ress;
+                          console.log(ress);
+                          if (!a) {
+                            console.log('hai');
+                            this.setState({ message: true });
+                            this.setState({loading:false});
+                          }
+                          else {
+                            this.setState({ loading: false });
+                            this.props.history.replace('/form');
 
-                        }
-                      });
-                      
+                          }
+                        });
 
-                    }
-                  }>
-                    Login
+
+                      }
+                      }>
+                      Login
                    </Button>}
-                    
+
 
 
                   </Form>
                 </Segment>
               </Grid.Column>
+
+              {this.state.loading == true && <div class="ui icon message">
+                <i class="notched circle loading icon"></i>
+                <div class="content">
+                  <div class="header">
+                    Just one second
+                   </div>
+                  <p>We're fetching that content for you.</p>
+                </div>
+              </div>
+              }
+              {this.state.message === true && <div class="ui negative message">
+                <i class="close icon"></i>
+                <div class="header">
+                  Password atau Nim salah
+                </div>
+                <p>Silahkan Login Kembali
+              </p></div>}
             </Grid>
+
           </div>
         )}
 
