@@ -9,6 +9,7 @@ import Landing from './page/landing';
 import { Route, Switch,Redirect } from 'react-router';
 import Navbar from './component/navbar';
 import Sukses from './component/sukses';
+import Registered from './component/registered';
 // const PrivateRoute = ({ component: Component,status:isLogged,pilih:pilih, ...rest }) => (
 //   <Route {...rest} render={(props) => {
 //     if (pilih===undefined){
@@ -69,6 +70,7 @@ class App extends Component {
             <PrivateRoute exact path="/form" component={FormPendaftaran} status={isLogged} />
             <PrivateRouteTwo path="/login" component={Login}  status={pilih}/>
              <PrivateRoute path="/success" component={Sukses}  status={isLogged}/>
+            <Route path="/registered" component={Registered}/>
           </Switch>
           </Container>
         </div>
