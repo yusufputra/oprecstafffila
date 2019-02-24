@@ -34,7 +34,7 @@ class App extends Component {
             <Route exact path="/" component={Landing} />
             <Route path="/login" component={Login} />
             {isLogged && <Route path="/form" component={FormPendaftaran}/>}
-            {isLogged && <Route path="/success" component={Sukses}/>}
+            {<Route path="/success" component={Sukses}/>}
           </Switch>
           </Container>
         </div>

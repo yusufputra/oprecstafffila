@@ -10,7 +10,8 @@ class AuthProvider extends React.Component {
         pilih: undefined,
         nama: undefined,
         nim: undefined,
-        prodi: undefined
+        prodi: undefined,
+        link: undefined
     }
     constructor() {
         super()
@@ -25,6 +26,11 @@ class AuthProvider extends React.Component {
     //   }
     setPilih(ad) {
         this.setState({ pilih: ad })
+        if(ad === "PK2 Maba"){
+            this.setState({link: "https://drive.google.com/file/d/1n2NA27bBNV22N66VB-ihsZ-w4IxdfnMf/view?usp=sharing"})
+        }else{
+            this.setState({link: "https://drive.google.com/file/d/1UCjOZbMGsEwj4xEm1M54Dqhk4aUNifDl/view?usp=sharing"})
+        }
     }
     login = async (nim, pass) => {
 
@@ -69,7 +75,8 @@ class AuthProvider extends React.Component {
                     nama: this.state.nama,
                     nim: this.state.nim,
                     prodi: this.state.prodi,
-                    login: this.login
+                    login: this.login,
+                    link: this.state.link
                 }}
             >
                 {this.props.children}
