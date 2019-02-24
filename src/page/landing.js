@@ -25,32 +25,33 @@ export default class Landing extends Component {
                 <div class="steps-one">
                   <img class="steps-img" src="http://placehold.it/50/3498DB/FFFFFF" alt="" />
                   <h3 class="steps-name">
-                    5 Oktober 2019
+                    24 - 28 Februari 2019
             </h3>
                   <p class="steps-description">
-                    Pendaftaran
+                    Pendaftaran Online
             </p>
                 </div>
 
                 <div class="steps-two">
                   <img class="steps-img" src="http://placehold.it/50/3498DB/FFFFFF" alt="" />
                   <h3 class="steps-name">
-                    5 Oktober 2019
+                    26 Februari 2019 - 1 Maret 2019
             </h3>
                   <p class="steps-description">
-                    Pendaftaran
+                    Pengembalian Berkas
             </p>
                 </div>
 
                 <div class="steps-three">
                   <img class="steps-img" src="http://placehold.it/50/3498DB/FFFFFF" alt="" />
                   <h3 class="steps-name">
-                    5 Oktober 2019
+                    4 Maret 2019
             </h3>
                   <p class="steps-description">
-                    Pendaftaran
+                    Fit and Proper Test
             </p>
                 </div>
+
 
               </div>
 
