@@ -7,9 +7,7 @@ import {
   Segment,
 } from 'semantic-ui-react';
 import { AuthConsumer } from '../AuthContext';
-import { isContext } from 'vm';
 
-const URL_EM = 'https://em.ub.ac.id/auth/css/api.php'
 
 export default class Login extends Component {
 
@@ -61,6 +59,7 @@ export default class Login extends Component {
                     {this.state.loading === false && <Button color="blue" fluid size="large"
                       onClick={async () => {
                         this.setState({ loading: true });
+                        if (this.state.nim.startsWith('17')){
                         await login(this.state.nim, this.state.password).then(ress => {
                           let a = ress;
                           console.log(ress);
@@ -74,7 +73,14 @@ export default class Login extends Component {
                             this.props.history.replace('/form');
 
                           }
-                        });
+                          
+                        }
+                        )
+                      }
+                      else{
+                        this.setState({loading:false});
+                        this.setState({message:true})
+                      };
 
 
                       }
