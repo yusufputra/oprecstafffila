@@ -25,32 +25,33 @@ export default class Landing extends Component {
                 <div class="steps-one">
                   <img class="steps-img" src="http://placehold.it/50/3498DB/FFFFFF" alt="" />
                   <h3 class="steps-name">
-                    5 Oktober 2019
+                    24 - 28 Februari 2019
             </h3>
                   <p class="steps-description">
-                    Pendaftaran
+                    Pendaftaran Online
             </p>
                 </div>
 
                 <div class="steps-two">
                   <img class="steps-img" src="http://placehold.it/50/3498DB/FFFFFF" alt="" />
                   <h3 class="steps-name">
-                    5 Oktober 2019
+                    26 Februari 2019 - 1 Maret 2019
             </h3>
                   <p class="steps-description">
-                    Pendaftaran
+                    Pengembalian Berkas
             </p>
                 </div>
 
                 <div class="steps-three">
                   <img class="steps-img" src="http://placehold.it/50/3498DB/FFFFFF" alt="" />
                   <h3 class="steps-name">
-                    5 Oktober 2019
+                    4 Maret 2019
             </h3>
                   <p class="steps-description">
-                    Pendaftaran
+                    Fit and Proper Test
             </p>
                 </div>
+
 
               </div>
 
@@ -59,7 +60,7 @@ export default class Landing extends Component {
             <div className="ui middle aligned center aligned grid container">
               <Card.Group>
                 <Card>
-                  <Image src='/img/pk2.jpg' />
+                  <Image src='./img/pk2.jpg' />
                   <Card.Content>
                     <Card.Header>PK2MABA FILKOM</Card.Header>
                     <Card.Meta>2019</Card.Meta>
@@ -79,7 +80,7 @@ export default class Landing extends Component {
 
                 </Card>
                 <Card>
-                  <Image src='/img/filafest.jpg' />
+                  <Image src='./img/filafest.jpg' />
                   <Card.Content>
                     <Card.Header>Diesnatalis FILKOM</Card.Header>
                     <Card.Meta>2019</Card.Meta>
@@ -87,8 +88,8 @@ export default class Landing extends Component {
                   </Card.Content>
                   <Card.Content extra>
 
-                    <Button animated='fade' color="blue" onClick={()=>
-                      {setPilih("Filafest")
+                    <Button animated='fade' color="blue" onClick={async ()=>{
+                      await setPilih("Filafest")
                       this.props.history.replace('/login')
                       }}>
                       <Button.Content visible>Daftar Ketua Pelaksana</Button.Content>

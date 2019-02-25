@@ -20,6 +20,7 @@ export default class Login extends Component {
       prodi: '',
       loading: false,
       message: false,
+      notseven: false
     }
   }
 
@@ -64,13 +65,13 @@ export default class Login extends Component {
                           let a = ress;
                           console.log(ress);
                           if (!a) {
-                            console.log('hai');
                             this.setState({ message: true });
                             this.setState({loading:false});
                           }
                           else {
-                            this.setState({ loading: false });
-                            this.props.history.replace('/form');
+                              this.setState({ loading: false });
+                              this.props.history.replace('/form');
+                            
 
                           }
                           
@@ -104,6 +105,13 @@ export default class Login extends Component {
                 </div>
               </div>
               }
+              {this.state.message === true && <div class="ui negative message">
+                <i class="close icon"></i>
+                <div class="header">
+                  Anda Bukan Angkatan 2017
+                </div>
+                <p>Silahkan Login Kembali
+              </p></div>}
               {this.state.message === true && <div class="ui negative message">
                 <i class="close icon"></i>
                 <div class="header">

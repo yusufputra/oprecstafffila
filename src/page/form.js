@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Form } from 'semantic-ui-react'
+import { Form, Button } from 'semantic-ui-react'
 import axios from 'axios';
 import { AuthConsumer } from '../AuthContext';
 
@@ -8,8 +8,8 @@ const options = [
     { key: 'f', text: 'Filafest', value: 'filafest' },
 ]
 
-const URL = 'http://localhost/api/postdata.php';
-// const URL = 'https://bemfilkom.ub.ac.id/api/opten3ProkerBesar/postdata.php'
+// const URL = 'http://localhost/api/postdata.php';
+const URL = 'https://backend-bem.herokuapp.com/kirim'
 
 export default class FormPendaftaran extends Component {
     constructor(props) {
@@ -20,7 +20,8 @@ export default class FormPendaftaran extends Component {
             prodi: '',
             line: '',
             pilih: '',
-            motivasi: ''
+            motivasi: '',
+            loading: false
         }
     }
 
@@ -28,24 +29,37 @@ export default class FormPendaftaran extends Component {
 
 
 
-    daftar() {
-        axios({
-            method: 'post',
-            url: URL,
-            data: {
-                "nim" : this.state.nim,
-                "nama": this.state.nama,
-                "prodi": this.state.prodi,
-                "idline": this.state.line,
-                "pilihan": this.state.pilihan,
-                "motivasi": this.state.motivasi
+    daftar = async (nama, nim, prodi, pilih) => {
+        const body = {
+            "nim": nim,
+            "nama": nama,
+            "prodi": prodi,
+            "pilihan": pilih,
+            "idline": this.state.line,
+            "motivasi": this.state.motivasi
+        }
+        console.log(body)
+        await fetch(URL, {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
             },
-           
-          }).then(ress=>{
-              console.log('suskes');
-          }).catch(err=>{
-              console.log(err);
-          });
+            body: JSON.stringify(body),
+        })
+            .then(response => {
+                if (response.ok) {
+                    console.log('sukses');
+                    return response.json();
+
+                }
+                return response.json().then(error => {
+                    throw new Error(error.message);
+                });
+            }).then(ress => {
+                // console.log(ress)
+                this.props.history.replace('/success')              
+
+            })
         }
         componentDidMount(){
             
@@ -59,13 +73,22 @@ export default class FormPendaftaran extends Component {
                 
                 <Form>
                     
-                <Form.Input fluid label='Nim' placeholder='First name' value={nim} readOnly onChange={val => this.setState({ nim: val.target.value })} />
-                <Form.Input fluid label='Nama' placeholder='First name' value={nama} readOnly onChange={val => this.setState({ nama: val.target.value })} />
-                <Form.Input fluid label='Program Studi' placeholder='Gender' value={prodi} readOnly onChange={val => this.setState({ program: val.target.value })} />
-                <Form.Input fluid label='Id Line' placeholder='Id Line'  onChange={val => this.setState({ line: val.target.value })} />
-                <Form.Input fluid label='Pilihan' placeholder='Pilihan' value={pilih} readOnly onChange={val => this.setState({ pilih: val.target.value })} />
-                <Form.TextArea label='Motivasi' placeholder='Tell us more about you...' onChange={val => this.setState({ motivasi: val.target.value })} />
-                <Form.Button onClick={this.daftar.bind(this)}>Submit</Form.Button>
+                <Form.Input fluid label='Nim' placeholder='First name' value={nim} readOnly  />
+                <Form.Input fluid label='Nama' placeholder='First name' value={nama} readOnly />
+                <Form.Input fluid label='Program Studi' placeholder='Gender' value={prodi} readOnly  />
+                <Form.Input fluid label='Id Line' required placeholder='Id Line'  onChange={val => this.setState({ line: val.target.value })} />
+                <Form.Input fluid label='Pilihan' placeholder='Pilihan' value={pilih} readOnly  />
+                <Form.TextArea label='Motivasi' required placeholder='Tell us more about you...' onChange={val => this.setState({ motivasi: val.target.value })} />
+                {this.state.loading === false && <Button color="blue" fluid onClick={()=>{
+                    this.setState({loading:true});
+                    this.daftar(nama, nim, prodi, pilih)
+                }
+                    }>Submit</Button>
+                }
+                    {this.state.loading === true && <Button color="blue" loading fluid >
+                    Login
+                 </Button>}
+                
             </Form>
             )}
             
