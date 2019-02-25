@@ -110,7 +110,7 @@ export default class Login extends Component {
                 <div class="header">
                   Anda Bukan Angkatan 2017
                 </div>
-                <p>Silahkan Login Kembali
+                <p>Hanya angkatan 17 yang diperkenankan mendaftar
               </p></div>}
               {this.state.message === true && <div class="ui negative message">
                 <i class="close icon"></i>

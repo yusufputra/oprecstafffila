@@ -3,10 +3,6 @@ import { Form, Button } from 'semantic-ui-react'
 import axios from 'axios';
 import { AuthConsumer } from '../AuthContext';
 
-const options = [
-    { key: 'p', text: 'PK2 Maba', value: 'pk2' },
-    { key: 'f', text: 'Filafest', value: 'filafest' },
-]
 
 // const URL = 'http://localhost/api/postdata.php';
 const URL = 'https://backend-bem.herokuapp.com/kirim'
