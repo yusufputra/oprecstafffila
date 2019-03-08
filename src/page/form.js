@@ -108,8 +108,8 @@ export default class FormPendaftaran extends Component {
 						<Form.Input fluid label="Program Studi" placeholder="Program Studi" value={prodi} readOnly />
 						<Form.Input fluid label="Kontak LINE/WA" required placeholder="ID LINE/WA" onChange={val => this.setState({contact: val.target.value})} />
 						<Form.Input fluid label="Pilihan Event" placeholder="Pilihan Event" value={pilih} readOnly />
-						<Form.Dropdown fluid required label="Pilihan Divisi 1" selection placeholder="Pilihan Divisi 1" options={divisiFila} onChange={val => this.setState({divisi1: val.target.value})} />
-						<Form.Dropdown fluid required label="Pilihan Divisi 2" selection placeholder="Pilihan Divisi 2" options={divisiFila} onChange={val => this.setState({divisi2: val.target.value})} />
+						<Form.Dropdown fluid required label="Pilihan Divisi 1" selection placeholder="Pilihan Divisi 1" options={divisiFila} onChange={(e,{value})=> this.setState({divisi1: value})} />
+						<Form.Dropdown fluid required label="Pilihan Divisi 2" selection placeholder="Pilihan Divisi 2" options={divisiFila} onChange={(e,{value})=> this.setState({divisi2: value})} />
 						<Form.TextArea label="Saran" required placeholder="Berikan saranmu untuk konsep acara ini" onChange={val => this.setState({saran: val.target.value})} />
 						{this.state.loading === false && (
 							<Button
