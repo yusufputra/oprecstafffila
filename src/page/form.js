@@ -8,38 +8,47 @@ const URL = "https://backend-bem.herokuapp.com/sendOprecStaffpk2fila";
 
 const divisiFila = [
 	{
+		key: 1,
 		text: "Kestari",
 		value: "Kestari"
 	},
 	{
+		key: 2,
 		text: "Acara (Acara)",
 		value: "Acara (Acara)"
 	},
 	{
+		key: 3,
 		text: "Acara (Kreatif)",
 		value: "Acara (Kreatif)"
 	},
 	{
+		key: 4,
 		text: "Humas",
 		value: "Humas"
 	},
 	{
+		key: 5,
 		text: "Transkoper",
 		value: "Transkoper"
 	},
 	{
+		key: 6,
 		text: "DDM",
 		value: "DDM"
 	},
 	{
+		key: 7,
 		text: "Kemankes",
 		value: "Kemankes"
 	},
 	{
+		key: 8,
 		text: "Kodanus",
 		value: "Kodanus"
 	},
 	{
+		key: 9,
 		text: "Sponsor",
 		value: "Sponsor"
 	}
@@ -108,7 +117,17 @@ export default class FormPendaftaran extends Component {
 						<Form.Input fluid label="Program Studi" placeholder="Program Studi" value={prodi} readOnly />
 						<Form.Input fluid label="Kontak LINE/WA" required placeholder="ID LINE/WA" onChange={val => this.setState({contact: val.target.value})} />
 						<Form.Input fluid label="Pilihan Event" placeholder="Pilihan Event" value={pilih} readOnly />
-						<Form.Dropdown fluid required label="Pilihan Divisi 1" selection placeholder="Pilihan Divisi 1" options={divisiFila} onChange={(e,{value})=> this.setState({divisi1: value})} />
+						<Form.Dropdown fluid required label="Pilihan Divisi 1" selection multiple placeholder="Pilihan Divisi 1" options={divisiFila} onChange={(e,{value})=> {
+							this.setState({divisi1: value});
+							// console.log(this.state.divisi1[1]);
+							// if (this.state.divisi1.length > 1) {
+							// 	alert('You may only select 2');
+							//   }
+							//   else {
+							// 	this.setState({divisi1: value});
+							// 	console.log(this.state.divisi1);
+							//   }
+						}} />
 						<Form.Dropdown fluid required label="Pilihan Divisi 2" selection placeholder="Pilihan Divisi 2" options={divisiFila} onChange={(e,{value})=> this.setState({divisi2: value})} />
 						<Form.TextArea label="Saran" required placeholder="Berikan saranmu untuk konsep acara ini" onChange={val => this.setState({saran: val.target.value})} />
 						{this.state.loading === false && (
