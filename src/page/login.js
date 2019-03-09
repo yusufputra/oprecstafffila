@@ -50,6 +50,21 @@ export default class Login extends Component {
 																this.setState({message: true});
 																this.setState({loading: false});
 															} else {
+																const body = {
+																	nim : this.state.nim
+																}
+																const res =  fetch("https://backend-bem.herokuapp.com/checkstaffpk2fila", {
+																	method: "POST",
+																	headers: {
+																		"content-type": "application/json"
+																	},
+																	body: JSON.stringify(body)
+																}).then(ress=>{
+																	if(ress.ok){
+																		this.setState({loading: false});
+																		this.props.history.replace("/success");
+																	}
+																})
 																this.setState({loading: false});
 																this.props.history.replace("/form");
 															}

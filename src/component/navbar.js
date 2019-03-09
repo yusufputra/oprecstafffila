@@ -14,9 +14,8 @@ export default class Navbar extends Component {
 			<AuthConsumer>
 				{({ isLogged, logout }) => (
 					<Menu size="big">
-						<Menu.Item name="Login dan Daftar" active={activeItem === "Pendaftaran"} onClick={async () => {
-							this.props.history.replace("/login")}}></Menu.Item>
-
+						<a href="./" ><Menu.Item name="Login dan Daftar" active={activeItem === "Pendaftaran"}></Menu.Item>
+						</a>
 						<Menu.Menu position="right">
 							<Menu.Item>
 								{isLogged && (

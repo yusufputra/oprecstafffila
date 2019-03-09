@@ -77,6 +77,7 @@ export default class FormPendaftaran extends Component {
 			nama: nama,
 			prodi: prodi,
 			contact: this.state.contact,
+			pilihan: "Filafest",
 			divisi1: this.state.divisi1,
 			divisi2: this.state.divisi2,
 			saran: this.state.saran
