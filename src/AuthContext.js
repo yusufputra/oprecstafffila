@@ -1,12 +1,11 @@
 import React from "react";
-import {Redirect} from "react-router-dom";
+import { Redirect } from "react-router-dom";
 const AuthContext = React.createContext();
 
 class AuthProvider extends React.Component {
 	state = {
 		isLogged: false,
 		dataUser: undefined,
-		pilih: null,
 		nama: undefined,
 		nim: undefined,
 		prodi: undefined,
@@ -14,7 +13,6 @@ class AuthProvider extends React.Component {
 	};
 	constructor() {
 		super();
-		this.setPilih = this.setPilih.bind(this);
 		this.login = this.login.bind(this);
 		this.logout = this.logout.bind(this);
 	}
@@ -26,21 +24,11 @@ class AuthProvider extends React.Component {
 	//   }
 
 	logout() {
-		this.setState({isLogged: false});
-		this.setState({dataUser: undefined});
-		this.setState({pilih: null});
-		this.setState({nim: undefined});
-		this.setState({prodi: undefined});
-		this.setState({link: undefined});
-	}
-	setPilih(ad) {
-		this.setState({pilih: ad});
-		if (ad === "PK2 Maba") {
-			this.setState({link: "https://drive.google.com/file/d/1n2NA27bBNV22N66VB-ihsZ-w4IxdfnMf/view?usp=sharing"});
-		} else {
-			this.setState({link: "https://drive.google.com/file/d/1UCjOZbMGsEwj4xEm1M54Dqhk4aUNifDl/view?usp=sharing"});
-		}
-		console.log(this.state);
+		this.setState({ isLogged: false });
+		this.setState({ dataUser: undefined });
+		this.setState({ nim: undefined });
+		this.setState({ prodi: undefined });
+		this.setState({ link: undefined });
 	}
 	login = async (nim, pass) => {
 		const body = {
@@ -60,10 +48,10 @@ class AuthProvider extends React.Component {
 			if (!data.sukses) {
 				return false;
 			}
-			this.setState({isLogged: true});
-			this.setState({nim: data.nim});
-			this.setState({nama: data.nama});
-			this.setState({prodi: data.prodi});
+			this.setState({ isLogged: true });
+			this.setState({ nim: data.nim });
+			this.setState({ nama: data.nama });
+			this.setState({ prodi: data.prodi });
 			return true;
 		} catch (error) {
 			console.log(error);
@@ -105,8 +93,6 @@ class AuthProvider extends React.Component {
 				value={{
 					isLogged: this.state.isLogged,
 					dataUser: this.state.dataUser,
-					setPilih: this.setPilih,
-					pilih: this.state.pilih,
 					nama: this.state.nama,
 					nim: this.state.nim,
 					prodi: this.state.prodi,
@@ -122,4 +108,4 @@ class AuthProvider extends React.Component {
 }
 
 const AuthConsumer = AuthContext.Consumer;
-export {AuthProvider, AuthConsumer};
+export { AuthProvider, AuthConsumer };
