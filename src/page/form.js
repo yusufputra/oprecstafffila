@@ -5,6 +5,7 @@ import {AuthConsumer} from "../AuthContext";
 // const URL = 'http://localhost/api/postdata.php';
 const URL = "https://backend-bem.herokuapp.com/sendOprecStaffpk2fila";
 
+let isi1, isi2 = null;
 const divisi = [
 	{
 		key: 1,
@@ -117,8 +118,16 @@ export default class FormPendaftaran extends Component {
 						<Form.Input fluid label="Nama" placeholder="Nama" value={nama} readOnly />
 						<Form.Input fluid label="Program Studi" placeholder="Program Studi" value={prodi} readOnly />
 						<Form.Input fluid label="Kontak LINE/WA" required placeholder="ID LINE/WA" onChange={val => this.setState({contact: val.target.value})} />
-						<Form.Dropdown fluid required label="Pilihan Divisi 1" selection placeholder="Pilihan Divisi 1" options={divisi} onChange={(e,{value})=> this.setState({divisi1: value})} />
-						<Form.Dropdown fluid required label="Pilihan Divisi 2" selection placeholder="Pilihan Divisi 2" options={divisi} onChange={(e,{value})=> this.setState({divisi2: value})} />
+						<Form.Dropdown fluid required label="Pilihan Divisi 1" selection placeholder="Pilihan divisi 1 dan 2 harus berbeda" options={divisi} value={isi1} onChange={(e, { value }) => {
+							isi1 = (value.trim() === this.state.divisi2.trim()) ? "" : value;
+							this.setState({ divisi1: isi1 });
+							console.log(isi1);
+						}} />
+						<Form.Dropdown fluid required label="Pilihan Divisi 2" selection placeholder="Pilihan divisi 1 dan 2 harus berbeda" options={divisi} value={isi2} onChange={(e, { value }) => {
+							isi2 = (value.trim() === this.state.divisi1.trim()) ? "" : value;
+							this.setState({ divisi2: isi2 });
+							console.log(isi2);
+						}} />
 						<Form.TextArea label="Saran untuk Filafest 2019" required placeholder="Berikan saranmu untuk konsep acara ini" onChange={val => this.setState({saran: val.target.value})} />
 						{this.state.loading === false && (
 							<Button
