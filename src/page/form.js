@@ -121,12 +121,10 @@ export default class FormPendaftaran extends Component {
 						<Form.Dropdown fluid required label="Pilihan Divisi 1" selection placeholder="Pilihan divisi 1 dan 2 harus berbeda" options={divisi} value={isi1} onChange={(e, { value }) => {
 							isi1 = (value.trim() === this.state.divisi2.trim()) ? "" : value;
 							this.setState({ divisi1: isi1 });
-							console.log(isi1);
 						}} />
 						<Form.Dropdown fluid required label="Pilihan Divisi 2" selection placeholder="Pilihan divisi 1 dan 2 harus berbeda" options={divisi} value={isi2} onChange={(e, { value }) => {
 							isi2 = (value.trim() === this.state.divisi1.trim()) ? "" : value;
 							this.setState({ divisi2: isi2 });
-							console.log(isi2);
 						}} />
 						<Form.TextArea label="Saran untuk Filafest 2019" required placeholder="Berikan saranmu untuk konsep acara ini" onChange={val => this.setState({saran: val.target.value})} />
 						{this.state.loading === false && (
