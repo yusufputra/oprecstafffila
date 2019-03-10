@@ -104,13 +104,16 @@ export default class FormPendaftaran extends Component {
 				this.props.history.replace("/success");
 			});
 	};
-	componentDidMount() {}
+
 
 	render() {
 		return (
 			<AuthConsumer>
 				{({nama, nim, prodi}) => (
-					<Form>
+					<Form onSubmit={()=>{
+						this.setState({loading: true})
+						this.daftar(nama,nim,prodi)
+					}}> 
 						<Form.Input fluid label="NIM" placeholder="NIM" value={nim} readOnly />
 						<Form.Input fluid label="Nama" placeholder="Nama" value={nama} readOnly />
 						<Form.Input fluid label="Program Studi" placeholder="Program Studi" value={prodi} readOnly />
@@ -122,12 +125,13 @@ export default class FormPendaftaran extends Component {
 							<Button
 								color="blue"
 								fluid
-								onClick={() => {
-									console.log(this.state.divisi1);
-									console.log(this.state.divisi2);
-									this.setState({loading: true});
-									this.daftar(nama, nim, prodi);
-								}}>
+
+								// onClick={() => {
+									
+								// 	this.setState({loading: true});
+								// 	// this.daftar(nama, nim, prodi);
+								// }}
+								>
 								Submit
 							</Button>
 						)}
