@@ -1,6 +1,5 @@
 import React, {Component} from "react";
 import {Form, Button} from "semantic-ui-react";
-import axios from "axios";
 import {AuthConsumer} from "../AuthContext";
 
 // const URL = 'http://localhost/api/postdata.php';

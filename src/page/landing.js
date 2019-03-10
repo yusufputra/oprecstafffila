@@ -1,7 +1,6 @@
 import React, { Component } from "react";
-import { Card, Image, Button, Header, Divider, Grid, Segment } from "semantic-ui-react";
+import { Image, Button, Header, Divider} from "semantic-ui-react";
 import "./style.scss";
-import { Link } from "react-router-dom";
 import { AuthConsumer } from "../AuthContext";
 export default class Landing extends Component {
 	render() {

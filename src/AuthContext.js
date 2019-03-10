@@ -1,5 +1,4 @@
 import React from "react";
-import { Redirect } from "react-router-dom";
 const AuthContext = React.createContext();
 
 class AuthProvider extends React.Component {

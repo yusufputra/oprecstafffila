@@ -81,7 +81,7 @@ export default class Login extends Component {
 								</Segment>
 							</Grid.Column>
 
-							{this.state.loading == true && (
+							{this.state.loading === true && (
 								<div class="ui icon message">
 									<i class="notched circle loading icon" />
 									<div class="content">

@@ -46,16 +46,16 @@ const PrivateRoute = ({ component: Component, status: isLogged, ...rest }) => (
   )} />
 )
 
-const PrivateRouteTwo = ({ component: Component, status: isLogged, ...rest }) => (
-  <Route {...rest} render={(props) => (
-    isLogged != null
-      ? <Component {...props} />
-      : <Redirect to={{
-        pathname: '/',
-        state: { from: props.location }
-      }} />
-  )} />
-)
+// const PrivateRouteTwo = ({ component: Component, status: isLogged, ...rest }) => (
+//   <Route {...rest} render={(props) => (
+//     isLogged != null
+//       ? <Component {...props} />
+//       : <Redirect to={{
+//         pathname: '/',
+//         state: { from: props.location }
+//       }} />
+//   )} />
+// )
 
 class App extends Component {
   render() {
