@@ -61,7 +61,7 @@ $brand-primary: #3498DB; //Zen Blue
   
   @media screen and (min-width: $break-point) {
     float: left;
-    width: 33%;  
+    width: 25%;  
     margin-top: -50px;
   }
 }
@@ -76,9 +76,6 @@ $brand-primary: #3498DB; //Zen Blue
     margin-left: -16.65%;
     margin-right: 16.65%;
   }
-}
-.steps-two {
-  
 }
 .steps-three {
   @media screen and (max-width: $break-point) {

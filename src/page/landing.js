@@ -20,20 +20,26 @@ export default class Landing extends Component {
 							<div class="steps-timeline">
 								<div class="steps-one">
 									<img class="steps-img" src="./img/time.png" alt="" />
-									<h3 class="steps-name">11 - 13 Maret 2019</h3>
-									<p class="steps-description">Pendaftaran staf Filafest</p>
+									<h3 class="steps-name">12 - 14 Maret 2019</h3>
+									<p class="steps-description">Pendaftaran online</p>
 								</div>
 
 								<div class="steps-two">
 									<img class="steps-img" src="./img/time.png" alt="" />
-									<h3 class="steps-name">13 - 15 Maret 2019</h3>
-									<p class="steps-description">Screening</p>
+									<h3 class="steps-name">15 - 17 Maret 2019</h3>
+									<p class="steps-description">Screening staf</p>
+								</div>
+
+								<div class="steps-two">
+									<img class="steps-img" src="./img/time.png" alt="" />
+									<h3 class="steps-name">18 Maret 2019</h3>
+									<p class="steps-description">Pengumuman seleksi staf</p>
 								</div>
 
 								<div class="steps-three">
 									<img class="steps-img" src="./img/time.png" alt="" />
-									<h3 class="steps-name">17 Maret 2019</h3>
-									<p class="steps-description">Pengumuman staf terpilih</p>
+									<h3 class="steps-name">19 Maret 2019</h3>
+									<p class="steps-description">First Gath staf</p>
 								</div>
 							</div>
 						</section>
