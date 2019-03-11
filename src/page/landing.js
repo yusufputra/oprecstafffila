@@ -1,106 +1,71 @@
-import React, { Component } from 'react';
-import { Card, Image, Button, Header, Icon } from 'semantic-ui-react';
-import './style.scss';
-import { Link } from 'react-router-dom';
-import { AuthConsumer } from '../AuthContext';
+import React, { Component } from "react";
+import { Image, Button, Header, Divider} from "semantic-ui-react";
+import "./style.scss";
+import { AuthConsumer } from "../AuthContext";
 export default class Landing extends Component {
+	render() {
+		return (
+			<AuthConsumer>
+				{() => (
+					<div>
+						<Divider hidden />
+						<Header as="h1" textAlign="center">
+							Open Recruitment Staf FILAFEST
+						</Header>
+						<section id="Steps" class="steps-section">
+							{/*start timeline*/}
+							<h2 class="steps-header">Timeline Pendaftaran</h2>
 
+							<div class="steps-timeline">
+								<div class="steps-one">
+									<img class="steps-img" src="./img/time.png" alt="" />
+									<h3 class="steps-name">12 - 14 Maret 2019</h3>
+									<p class="steps-description">Pendaftaran online</p>
+								</div>
 
-  render() {
-    return (
-      <AuthConsumer>
-        {({ setPilih }) => (
-          <div>
-            <Header as='h1' textAlign='center'>
-              Open Tender Ketua Pelaksana
-        </Header>
-            <section id="Steps" class="steps-section">
-              {/*start timeline*/}
-              <h2 class="steps-header">
-                Timeline Pendaftaran
-        </h2>
+								<div class="steps-two">
+									<img class="steps-img" src="./img/time.png" alt="" />
+									<h3 class="steps-name">15 - 17 Maret 2019</h3>
+									<p class="steps-description">Screening staf</p>
+								</div>
 
-              <div class="steps-timeline">
+								<div class="steps-two">
+									<img class="steps-img" src="./img/time.png" alt="" />
+									<h3 class="steps-name">18 Maret 2019</h3>
+									<p class="steps-description">Pengumuman seleksi staf</p>
+								</div>
 
-                <div class="steps-one">
-                  <img class="steps-img" src="http://placehold.it/50/3498DB/FFFFFF" alt="" />
-                  <h3 class="steps-name">
-                    5 Oktober 2019
-            </h3>
-                  <p class="steps-description">
-                    Pendaftaran
-            </p>
-                </div>
-
-                <div class="steps-two">
-                  <img class="steps-img" src="http://placehold.it/50/3498DB/FFFFFF" alt="" />
-                  <h3 class="steps-name">
-                    5 Oktober 2019
-            </h3>
-                  <p class="steps-description">
-                    Pendaftaran
-            </p>
-                </div>
-
-                <div class="steps-three">
-                  <img class="steps-img" src="http://placehold.it/50/3498DB/FFFFFF" alt="" />
-                  <h3 class="steps-name">
-                    5 Oktober 2019
-            </h3>
-                  <p class="steps-description">
-                    Pendaftaran
-            </p>
-                </div>
-
-              </div>
-
-            </section>
-            {/*end timeline*/}
-            <div className="ui middle aligned center aligned grid container">
-              <Card.Group>
-                <Card>
-                  <Image src='https://react.semantic-ui.com/images/avatar/large/daniel.jpg' />
-                  <Card.Content>
-                    <Card.Header>PK2MABA FILKOM</Card.Header>
-                    <Card.Meta>2019</Card.Meta>
-                    <Card.Description>ini deskripsi  singkat</Card.Description>
-                  </Card.Content>
-                  <Card.Content extra>
-
-                    <Button animated='fade' color="blue" onClick={()=>{
-                      setPilih("PK2 Maba");
-                      this.props.history.replace('/login')
-                    }
-                    }>
-                      <Button.Content visible>Daftar Ketua Pelaksana</Button.Content>
-                      <Button.Content hidden>Login</Button.Content>
-                    </Button>
-                  </Card.Content>
-
-                </Card>
-                <Card>
-                  <Image src='https://react.semantic-ui.com/images/avatar/large/daniel.jpg' />
-                  <Card.Content>
-                    <Card.Header>Diesnatalis FILKOM</Card.Header>
-                    <Card.Meta>2019</Card.Meta>
-                    <Card.Description>ini deskripsi  singkat</Card.Description>
-                  </Card.Content>
-                  <Card.Content extra>
-
-                    <Button animated='fade' color="blue" onClick={()=>
-                      {setPilih("Filafest")
-                      this.props.history.replace('/login')
-                      }}>
-                      <Button.Content visible>Daftar Ketua Pelaksana</Button.Content>
-                      <Button.Content hidden>Login</Button.Content>
-                    </Button>
-                  </Card.Content>
-                </Card>
-              </Card.Group>
-            </div>
-
-          </div>)}
-      </AuthConsumer>
-    )
-  }
+								<div class="steps-three">
+									<img class="steps-img" src="./img/time.png" alt="" />
+									<h3 class="steps-name">19 Maret 2019</h3>
+									<p class="steps-description">First Gath staf</p>
+								</div>
+							</div>
+						</section>
+						{/*end timeline*/}
+						<Divider section />
+						<div className="ui middle aligned center aligned container"><Button
+							animated="vertical"
+							size="massive"
+							positive
+							centered
+							onClick={async () => {
+								this.props.history.replace("/login");
+							}}>
+							<Button.Content visible>Daftar Staf FILAFEST</Button.Content>
+							<Button.Content hidden>Login</Button.Content>
+						</Button>
+						</div>
+						<Divider section />
+						<div className="ui middle aligned center aligned container">
+							<Image size="big" centered bordered src="./img/filafest.jpg" />
+							<h1>FILAFEST: Diesnatalis FILKOM 2019</h1>
+							<p>Diesnatalis Fakultas Ilmu Komputer yang bertujuan sebagai perayaan ulang tahun Fakultas Ilmu Komputer ke 8 Tahun yang dimana pelaksanaannya akan melibatkan panitia mahasiswa yang dibawahi oleh Kementerian Pengembangan Sumber Daya Mahasiswa.</p>
+						</div>
+						<Divider hidden />
+					</div>
+				)}
+			</AuthConsumer>
+		);
+	}
 }
