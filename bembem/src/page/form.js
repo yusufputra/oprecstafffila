@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import {Form, Button} from "semantic-ui-react";
+import {Form, Button, Dimmer, Loader, Image, Segment} from "semantic-ui-react";
 import {AuthConsumer} from "../AuthContext";
 
 // const URL = 'http://localhost/api/postdata.php';
@@ -109,11 +109,19 @@ export default class FormPendaftaran extends Component {
 	render() {
 		return (
 			<AuthConsumer>
-				{({nama, nim, prodi}) => (
+				{({nama, nim, prodi, loading}) => (
 					<Form onSubmit={()=>{
 						this.setState({loading: true})
 						this.daftar(nama,nim,prodi)
 					}}> 
+					{loading && (<Segment>
+						<Dimmer active>
+							<Loader size='medium'>Preparing Your Data</Loader>
+						</Dimmer>
+
+						<Image src='https://react.semantic-ui.com/images/wireframe/short-paragraph.png' />
+						<Image src='https://react.semantic-ui.com/images/wireframe/short-paragraph.png' />
+					</Segment>)}
 						<Form.Input fluid label="NIM" placeholder="NIM" value={nim} readOnly />
 						<Form.Input fluid label="Nama" placeholder="Nama" value={nama} readOnly />
 						<Form.Input fluid label="Program Studi" placeholder="Program Studi" value={prodi} readOnly />

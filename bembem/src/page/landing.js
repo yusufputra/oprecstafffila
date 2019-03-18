@@ -19,7 +19,7 @@ export default class Landing extends Component {
 							<div class="steps-timeline">
 								<div class="steps-one">
 									<img class="steps-img" src="./img/time.png" alt="" />
-									<h3 class="steps-name">12 - 14 Maret 2019</h3>
+									<h3 class="steps-name">13 - 15 Maret 2019</h3>
 									<p class="steps-description">Pendaftaran online</p>
 								</div>
 
@@ -37,7 +37,7 @@ export default class Landing extends Component {
 
 								<div class="steps-three">
 									<img class="steps-img" src="./img/time.png" alt="" />
-									<h3 class="steps-name">19 Maret 2019</h3>
+									<h3 class="steps-name">Soon</h3>
 									<p class="steps-description">First Gath staf</p>
 								</div>
 							</div>

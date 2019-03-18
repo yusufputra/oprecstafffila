@@ -5,7 +5,7 @@ import { AuthConsumer } from "../AuthContext";
 const Sukses = () => (
 	<AuthConsumer>
 		{({ link }) => (
-			<Message success>
+			<Message info>
 				<h1>Terimakasih Anda Telah Terdaftar sebagai Calon Staff!</h1>
 				Download Berkas Anda di<a href={link}> link berikut</a>
 			</Message>

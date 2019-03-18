@@ -14,7 +14,7 @@ export default class Navbar extends Component {
 			<AuthConsumer>
 				{({ isLogged, logout }) => (
 					<Menu size="big">
-						<a href="./" ><Menu.Item name="Login dan Daftar" active={activeItem === "Pendaftaran"}></Menu.Item>
+						<a href="./" ><Menu.Item name="BEM FILKOM 2019" active={activeItem === "Pendaftaran"}></Menu.Item>
 						</a>
 						<Menu.Menu position="right">
 							<Menu.Item>
