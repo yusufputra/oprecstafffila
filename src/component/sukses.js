@@ -7,7 +7,7 @@ const Sukses = () => (
 		{({ link }) => (
 			<Message success>
 				<h1>Terimakasih Anda Telah Terdaftar sebagai Calon Staff!</h1>
-				Download Berkas Anda di<a href={link}> link berikut</a>
+				Download Berkas Anda di<a href="http://bit.ly/Filafest2019"> link berikut</a>
 			</Message>
 		)}
 	</AuthConsumer>

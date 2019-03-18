@@ -10,6 +10,7 @@ export default class Login extends Component {
 			password: "",
 			nama: "",
 			prodi: "",
+			pilihan: "Filafest",
 			loading: false,
 			message: false
 		};
@@ -18,7 +19,7 @@ export default class Login extends Component {
 	render() {
 		return (
 			<AuthConsumer>
-				{({login}) => (
+				{({login, setStatus, setLoading}) => (
 					<div class="ui middle aligned center aligned grid">
 						<Grid centered columns={1}>
 							<Grid.Column>
@@ -51,19 +52,40 @@ export default class Login extends Component {
 																this.setState({loading: false});
 															} else {
 																const body = {
-																	nim : this.state.nim
+																	nim : this.state.nim,
+																	pilihan : this.state.pilihan
 																}
-																const res =  fetch("https://backend-bem.herokuapp.com/checkstaffpk2fila", {
+																fetch("https://backend-bem.herokuapp.com/checkstaffpk2fila", {
 																	method: "POST",
 																	headers: {
 																		"content-type": "application/json"
 																	},
 																	body: JSON.stringify(body)
 																}).then(ress=>{
-																	if(ress.ok){
+																	return ress.json()
+																	// console.log(ress)
+																	// if(ress.ok){
+																	// 	this.setState({loading: false});
+																	// 	this.props.history.replace("/success");
+																	// }
+																}).then(data=>{
+																	setStatus(data.value);
+																	console.log(data)
+																	if(data.status === true){
 																		this.setState({loading: false});
-																		this.props.history.replace("/success");
+																		if(data.value === null){
+																			setLoading(false);
+																			this.props.history.replace("/success");
+																		}else{
+																			setLoading(false);
+																			this.props.history.replace("/notif");
+																		}
+																	}else{
+																		setLoading(false);
 																	}
+																	
+																}).catch(error=>{
+																	console.log(error)
 																})
 																this.setState({loading: false});
 																this.props.history.replace("/form");
